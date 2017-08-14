@@ -22,7 +22,7 @@ interface MyFirstInteraface {
 }
 
 /**
- * 2)firstly, define a concrete interface implementation class
+ * 2)secondly, define a concrete interface implementation class
  * 
  * @author yonghua.han
  *
@@ -37,7 +37,7 @@ class MyFirstInterfaceImpl implements MyFirstInteraface {
 }
 
 /**
- * 3)firstly, define a proxy class implementing InvocationHandler
+ * 3)Thirdly, define a proxy class implementing InvocationHandler
  * 
  * @author yonghua.han the most important knowledge point is how to use
  *         Method.invoke.........
