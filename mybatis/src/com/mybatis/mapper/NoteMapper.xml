@@ -13,6 +13,12 @@
 		select *
 		from note where id = #{id}
 	</select>
+
+	<select id="getAll" resultMap="note-base">
+		select *
+		from note
+	</select>
+
 	<insert id="insertNote" parameterType="com.mybatis.test.Note">
 		insert into note(id, date) values(#{id}, #{date,
 		javaType=Date,jdbcType=VARCHAR,typeHandler=com.mybatis.test.MyDateTypeHandler})
