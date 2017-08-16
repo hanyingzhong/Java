@@ -3,19 +3,20 @@ package com.mybatis.test;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.hibernate.SessionFactory;
 
 public class MybatisMapperTest {
 	/**
-	 * ¿Í»§¶Ë
+	 * å®¢æˆ·ç«¯
 	 * @author turbo
 	 *
-	 * 2016Äê9ÔÂ11ÈÕ
+	 * 2016å¹´9æœˆ11æ—¥
 	 */
 	    /**
 	     * @param args
@@ -38,18 +39,32 @@ public class MybatisMapperTest {
 	        String str = String.valueOf((new Date()).getTime());
 	        
 	        Note note = new Note();
-	        note.setId(1001);
-	        note.setDate(new Date());
-	        noteMapper.insertNote(note);    //²åÈë
-	        session.commit();    //×¢ÒâĞèÒªÊÖ¶¯Ìá½»ÊÂÎñ
+	        Integer id = 200;
+
+	        Note tmp = noteMapper.queryNote(id);
+	        if(tmp == null){
+		        note.setId(id);
+		        note.setDate(new Date());
+		        noteMapper.insertNote(note);    //æ’å…¥
+		        session.commit();    //æ³¨æ„éœ€è¦æ‰‹åŠ¨æäº¤äº‹åŠ¡	
+		        System.out.println("insert new record id =" + id);
+	        }
 	        
-	        note = noteMapper.queryNote(1);    //²éÑ¯
+	        note = noteMapper.queryNote(1);    //æŸ¥è¯¢
 	        System.out.println(note.getDate());
 
-	        note = noteMapper.queryNote(100);    //²éÑ¯
+	        note = noteMapper.queryNote(100);    //æŸ¥è¯¢
 	        if(note == null){
 		        System.out.println("no record..");	        	
 	        }
+	        
+	        List<Note> notes = noteMapper.getAll();
+	        Iterator it = notes.iterator();
+	        while(it.hasNext()){
+	        	Note note1 = (Note)it.next();
+		        System.out.println(note1.getDate());	        	
+	        }
+	        
 	        session.close();
 	    }
 
