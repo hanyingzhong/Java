@@ -1,12 +1,16 @@
 package com.mybatis.test;
 
+import java.util.List;
+
 /**
  * @author turbo
  *
- *         2016Äê10ÔÂ23ÈÕ
+ *         2016å¹´10æœˆ23æ—¥
  */
 public interface NoteMapper {
 	Note queryNote(int id);
 
 	void insertNote(Note note);
+	
+	List<Note> getAll();
 }
