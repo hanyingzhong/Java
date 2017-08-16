@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mybatis.test.NoteMapper">
+	<resultMap id="note-base" type="com.mybatis.test.Note">
+		<result property="id" column="id" />
+		<result property="date" column="date" javaType="java.util.Date"
+			jdbcType="VARCHAR" typeHandler="com.mybatis.test.MyDateTypeHandler" />
+	</resultMap>
+
+	<select id="queryNote" parameterType="int" resultMap="note-base">
+		select *
+		from note where id = #{id}
+	</select>
+	<insert id="insertNote" parameterType="com.mybatis.test.Note">
+		insert into note(id, date) values(#{id}, #{date,
+		javaType=Date,jdbcType=VARCHAR,typeHandler=com.mybatis.test.MyDateTypeHandler})
+	</insert>
+</mapper>
